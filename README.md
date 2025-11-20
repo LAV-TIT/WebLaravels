@@ -15,6 +15,3 @@ grep guardian - Searches for lines containing the word "guardian"
 php artisan route:list | grep guardian
 
 ```
-# WebLaravels
-# WebLaravels
-# WebLaravels
