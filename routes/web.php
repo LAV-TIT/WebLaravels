@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route as R;
-use App\Http\Controllers\{
+use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Admin\{
   AttendanceController,
   BookController,
   BookCategoryController,
@@ -22,7 +23,6 @@ use App\Http\Controllers\{
   SettingController,
   StudentController,
   StudentFeeController,
-  StudentGuardianController,
   SubjectController,
   TeacherController,
   TimetableController,
@@ -32,22 +32,57 @@ use App\Http\Controllers\{
   ScoreController,
   UserController,
   RoleController,
+  ProfileController
 };
 
-use Illuminate\Support\Facades\Auth;
+/*
+|--------------------------------------------------------------------------
+| FRONTEND WEBSITE ROUTES (No Login Required)
+|--------------------------------------------------------------------------
+*/
 
-Auth::routes(['register' => false]);
+R::get('/home', function () {
+  return view('web.home');
+})->name('web.home');
+
+R::get('/about-us', function () {
+  return view('web.about');
+})->name('web.about');
+R::get('/contact', function () {
+  return view('web.contact');
+})->name('web.contact');
+R::get('/what-we-do', function () {
+  return view('web.whatwedo');
+})->name('web.whatwedo');
+R::get('/', function () {
+  return redirect('/home');   // 👈 redirect main domain to website home
+});
+
+/*
+|--------------------------------------------------------------------------
+| AUTH ROUTES
+|--------------------------------------------------------------------------
+*/
+Auth::routes();
 
 R::get('/', function () {
+
   if (Auth::check())
     return redirect('/admin/profile');
 
   return redirect('/login');
 });
+/*
+|--------------------------------------------------------------------------
+| ADMIN PANEL ROUTES (Login Required)
+|--------------------------------------------------------------------------
+*/
 
-R::prefix('/admin')
+R::prefix('admin')
   ->as('admin.')
+  ->middleware('auth')
   ->group(function () {
+
     R::get('/', [HomeController::class, 'index'])->name('home');
 
     R::resources([
@@ -78,12 +113,21 @@ R::prefix('/admin')
       'teachers' => TeacherController::class,
       'timetables' => TimetableController::class,
       'timetable_entries' => TimetableEntryController::class,
-      'scores' => ScoreController::class
-
+      'scores' => ScoreController::class,
     ]);
+
+    R::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    R::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
 
     R::get('/students/profile/{student}', [StudentController::class, 'profile'])
       ->name('students.profile');
+
+
+    /*
+      |--------------------------------------------------------------------------
+      | BULK ACTIONS
+      |--------------------------------------------------------------------------
+      */
 
     $bulkRoutes = [
       'expenses' => ExpenseController::class,
