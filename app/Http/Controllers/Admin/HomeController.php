@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -9,14 +10,16 @@ use App\Models\Section;
 use App\Models\Payment;
 use App\Models\Attendance;
 use App\Models\Notice;
+use App\Models\User;
 use Carbon\Carbon;
 
 class HomeController extends Controller
 {
   public function index()
   {
-    $teachers = Teacher::count();
-    $students = Student::count();
+    $teachers = User::role('Teacher')->count();
+    $students = User::role('Student')->count();
+
     $data = [
       'totalStudents' => $students,
       'totalTeachers' => $teachers,

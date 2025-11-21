@@ -90,7 +90,6 @@
             background: linear-gradient(135deg, #1e3a8a 0%, #0f172a 100%);
         }
     </style>
-    @include('layouts.partials.metatag')
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 

@@ -55,6 +55,9 @@ R::get('/contact', function () {
 R::get('/what-we-do', function () {
   return view('web.whatwedo');
 })->name('web.whatwedo');
+R::get('/donation', function () {
+  return view('web.donation');
+})->name('web.donation');
 R::get('/', function () {
   return redirect('/home');   // 👈 redirect main domain to website home
 });
@@ -112,8 +115,6 @@ R::prefix('admin')
       'studentfees' => StudentFeeController::class,
       'subjects' => SubjectController::class,
       'teachers' => TeacherController::class,
-      'timetables' => TimetableController::class,
-      'timetable_entries' => TimetableEntryController::class,
       'scores' => ScoreController::class,
     ]);
 

@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
-
+namespace App\Http\Controllers\Admin;
+use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreNoticeRequest;
 use App\Http\Requests\UpdateNoticeRequest;
 use App\Models\Notice;
