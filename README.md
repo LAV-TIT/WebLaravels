@@ -1,9 +1,34 @@
+install composer if not found
+```sh
+composer install
+```
+install composer if not found dependency 
+```sh
+npm i
+```
+composer update
+```sh
+composer update
+```
+
 Create a permission seed:
 
 ```sh
 php artisan permissions:generate
 ```
+check make file version
+```sh
+make --version
+```
+If you see a version → ✔ Installed
+If you see "command not found" → install:
+```sh
+sudo apt install make
+```
 
+```sh
+make migrate
+```
 
 php artisan route:list - Lists all registered routes in your Laravel application
 
