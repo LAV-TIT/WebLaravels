@@ -22,7 +22,7 @@
         </x-button.button>
     @endif
 
-    @if ($edit)
+   @if($edit ?? false)
         <x-button.button btn-type="save" id="saveEditBtn" type="submit">
             <span class="btn-content flex items-center">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
@@ -35,14 +35,14 @@
         </x-button.button>
     @endif
 
-    @if ($detail)
+    @if($edit ?? false)
         <button type="button" id="close"
             class="px-5 py-2.5 cursor-pointer bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg transition-colors">
             Close
         </button>
     @endif
 
-    @if ($delete)
+    @if ($delete?? false)
         <button type="button" id="cancelDeleteModal"
             class="px-4 py-2 border cursor-pointer border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 rounded-md hover:bg-gray-50 dark:hover:bg-gray-700">
             Cancel
