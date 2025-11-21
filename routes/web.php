@@ -23,7 +23,6 @@ use App\Http\Controllers\Admin\{
   SettingController,
   StudentController,
   StudentFeeController,
-  StudentGuardianController,
   SubjectController,
   TeacherController,
   TimetableController,
