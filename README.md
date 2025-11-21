@@ -1,3 +1,16 @@
+install composer if not found
+```sh
+composer install
+```
+install composer if not found dependency 
+```sh
+npm i
+```
+composer update
+```sh
+composer update
+```
+
 Create a permission seed:
 
 ```sh
