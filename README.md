@@ -6,16 +6,16 @@ php artisan permissions:generate
 check make file version
 ```sh
 make --version
-```sh
+```
 If you see a version → ✔ Installed
 If you see "command not found" → install:
 ```sh
 sudo apt install make
-```sh
+```
 
 ```sh
 make migrate
-```sh
+```
 
 php artisan route:list - Lists all registered routes in your Laravel application
 
