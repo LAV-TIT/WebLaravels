@@ -1,7 +1,7 @@
 @extends('layouts.web')
 
 @section('content')
-<h1>Events</h1>
+<h1>News</h1>
 @endsection
 
 @push('scripts')
